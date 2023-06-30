@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ConfStream-App
+  labels:
+    app: ConfStream-App
+  namespace: confstream
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ConfStream-App
+  template:
+    metadata:
+      labels:
+        app: ConfStream-App
+    spec:
+      containers:
+        - name: ConfStream-App
+          image: confstreamapp.azurecr.io/image-workflow-1688087032510:latest
+          ports:
+            - containerPort: 5000
