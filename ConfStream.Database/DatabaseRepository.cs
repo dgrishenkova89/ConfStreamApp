@@ -57,9 +57,9 @@ namespace ConfStream.Database
         public Task<TProjection> FirstOrDefaultAsync<TEntity, TProjection>(Specification<TEntity> specification, Expression<Func<TEntity, TProjection>> projectExpression, CancellationToken cancellationToken, IEnumerable<string> includedProperties = null, bool noTracking = true, bool asSplitQuery = true, IEnumerable<Expression<Func<TEntity, object>>> sortingExpressions = null, SortingOrder? sortingOrder = null) where TEntity : BaseEntity
         {
             var query = Set<TEntity>().GetFilteredQueryWithSorting(
-                specification, includedProperties, noTracking, asSplitQuery, sortingExpressions: sortingExpressions, sortingOrder: sortingOrder);
+                specification, projectExpression, includedProperties, noTracking, asSplitQuery, sortingExpressions: sortingExpressions, sortingOrder: sortingOrder);
 
-            return query.Select(projectExpression).FirstOrDefaultAsync(cancellationToken);
+            return query.FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<TProjection[]> GetArrayAsync<TEntity, TProjection>(Specification<TEntity> specification, Expression<Func<TEntity, TProjection>> projectExpression, CancellationToken cancellationToken, IEnumerable<string> includedProperties = null, bool noTracking = true, int skip = 0, int take = 0, IEnumerable<Expression<Func<TEntity, object>>> sortingExpressions = null, SortingOrder? sortingOrder = null, bool asSplitQuery = false, bool useDistinct = false) where TEntity : BaseEntity
