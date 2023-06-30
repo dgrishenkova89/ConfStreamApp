@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
-#nullable disable
+﻿#nullable disable
 
 namespace ConfStream.Database.EF.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
     /// <inheritdoc />
     public partial class InitialMigration : Migration
     {
@@ -24,7 +24,7 @@ namespace ConfStream.Database.EF.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     AlphaCode2 = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -39,7 +39,7 @@ namespace ConfStream.Database.EF.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CountryId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -66,7 +66,7 @@ namespace ConfStream.Database.EF.Migrations
                     CountryId = table.Column<int>(type: "integer", nullable: false),
                     UserRole = table.Column<short>(type: "smallint", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -90,7 +90,7 @@ namespace ConfStream.Database.EF.Migrations
                     RoomNumber = table.Column<int>(type: "integer", nullable: false),
                     DbConferenceInfoId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -118,7 +118,7 @@ namespace ConfStream.Database.EF.Migrations
                     Comment = table.Column<string>(type: "text", nullable: false),
                     EventId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                 },
                 constraints: table =>
                 {

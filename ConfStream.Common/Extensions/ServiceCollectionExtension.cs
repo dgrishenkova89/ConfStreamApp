@@ -1,4 +1,6 @@
-﻿using ConfStream.Database.EF;
+﻿using ConfStream.Database;
+using ConfStream.Database.Common.Abstractions;
+using ConfStream.Database.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +16,13 @@ namespace ConfStream.Common.Extensions
                     options.UseNpgsql(connectionString);
                     options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
                 });
+
+            return services;
+        }
+
+        public static IServiceCollection AddDatabaseContextRepository(this IServiceCollection services)
+        {
+            services.AddTransient<IRepository<DatabaseContext>, DatabaseRepository>();
 
             return services;
         }

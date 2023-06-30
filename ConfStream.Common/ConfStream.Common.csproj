@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConfStream.Database.EF\ConfStream.Database.EF.csproj" />
+    <ProjectReference Include="..\ConfStream.Database\ConfStream.Database.csproj" />
   </ItemGroup>
 
 </Project>
