@@ -1,23 +1,23 @@
 ﻿using ConfStream.Common.Enums;
 using ConfStream.Database.Common.Abstractions;
-using ConfStream.Database.Common.Extensions;
 using ConfStream.Database.Common.Models;
 using ConfStream.Database.Common.Specifications.BaseSpecifications;
 using ConfStream.Database.EF;
+using ConfStream.Database.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace ConfStream.Database
 {
-    public class DatabaseRepository : IRepository<DatabaseContext>
+    public class DatabaseContextRepository : IDatabaseContextRepository
     {
-        public DatabaseContext Context { get; }
+        public DatabaseContext Context { get; set; }
 
         protected virtual IQueryable<TEntity> Set<TEntity>()
             where TEntity : BaseEntity
                 => Context.Set<TEntity>();
 
-        protected DatabaseRepository(DatabaseContext context)
+        protected DatabaseContextRepository(DatabaseContext context)
         {
             Context = context;
         }
@@ -31,7 +31,13 @@ namespace ConfStream.Database
             return entry.Entity.Id;
         }
 
-        public Task<bool> AnyAsync<TEntity>(Specification<TEntity> specification, CancellationToken cancellationToken, IEnumerable<string> includedProperties = null, bool noTracking = true, bool asSplitQuery = false) where TEntity : BaseEntity
+        public Task<bool> AnyAsync<TEntity>(
+            Specification<TEntity> specification,
+            CancellationToken cancellationToken,
+            IEnumerable<string> includedProperties = null,
+            bool noTracking = true,
+            bool asSplitQuery = false)
+                where TEntity : BaseEntity
         {
             var query = Set<TEntity>().IncludeAll(includedProperties);
 
@@ -54,7 +60,16 @@ namespace ConfStream.Database
             await Context.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<TProjection> FirstOrDefaultAsync<TEntity, TProjection>(Specification<TEntity> specification, Expression<Func<TEntity, TProjection>> projectExpression, CancellationToken cancellationToken, IEnumerable<string> includedProperties = null, bool noTracking = true, bool asSplitQuery = true, IEnumerable<Expression<Func<TEntity, object>>> sortingExpressions = null, SortingOrder? sortingOrder = null) where TEntity : BaseEntity
+        public Task<TProjection> FirstOrDefaultAsync<TEntity, TProjection>(
+            Specification<TEntity> specification,
+            Expression<Func<TEntity, TProjection>> projectExpression,
+            CancellationToken cancellationToken,
+            IEnumerable<string> includedProperties = null,
+            bool noTracking = true,
+            bool asSplitQuery = true,
+            IEnumerable<Expression<Func<TEntity, object>>> sortingExpressions = null,
+            SortingOrder? sortingOrder = null)
+                where TEntity : BaseEntity
         {
             var query = Set<TEntity>().GetFilteredQueryWithSorting(
                 specification, projectExpression, includedProperties, noTracking, asSplitQuery, sortingExpressions: sortingExpressions, sortingOrder: sortingOrder);

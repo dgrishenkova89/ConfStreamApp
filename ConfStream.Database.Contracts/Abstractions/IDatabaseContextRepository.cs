@@ -1,15 +1,14 @@
 ﻿using ConfStream.Common.Enums;
 using ConfStream.Database.Common.Models;
 using ConfStream.Database.Common.Specifications.BaseSpecifications;
-using Microsoft.EntityFrameworkCore;
+using ConfStream.Database.EF;
 using System.Linq.Expressions;
 
 namespace ConfStream.Database.Common.Abstractions
 {
-    public interface IRepository<out TDbContext>
-        where TDbContext : DbContext
+    public interface IDatabaseContextRepository
     {
-        TDbContext Context { get; }
+        DatabaseContext Context { get; set; }
 
         Task<long> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken)
             where TEntity : BaseEntity;

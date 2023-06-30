@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ConfStream.Database.Contracts\ConfStream.Database.Common.csproj" />
     <ProjectReference Include="..\ConfStream.Database.EF\ConfStream.Database.EF.csproj" />
   </ItemGroup>
 

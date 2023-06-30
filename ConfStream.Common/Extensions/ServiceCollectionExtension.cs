@@ -15,14 +15,15 @@ namespace ConfStream.Common.Extensions
                 {
                     options.UseNpgsql(connectionString);
                     options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
-                });
+                })
+                .AddOptions<DatabaseContext>();
 
             return services;
         }
 
         public static IServiceCollection AddDatabaseContextRepository(this IServiceCollection services)
         {
-            services.AddTransient<IRepository<DatabaseContext>, DatabaseRepository>();
+            services.AddScoped<IDatabaseContextRepository, DatabaseContextRepository>();
 
             return services;
         }

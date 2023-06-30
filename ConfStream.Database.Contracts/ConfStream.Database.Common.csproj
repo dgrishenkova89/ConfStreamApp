@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ConfStream.Database.EF\ConfStream.Database.EF.csproj" />
+  </ItemGroup>
+
 </Project>

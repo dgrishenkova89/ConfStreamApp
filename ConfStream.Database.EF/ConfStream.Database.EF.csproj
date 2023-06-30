@@ -28,8 +28,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ConfStream.Database.Contracts\ConfStream.Database.Common.csproj" />
-  </ItemGroup>
-
 </Project>
